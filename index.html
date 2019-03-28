@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Lista de Usuarios!</title>
+</head>
+<body>
+	<div id="app">
+		<br><br><br>
+		
+		<div class="container">
+			<h1>{{ titulo }}</h1>
+			<button @click.stop.prevent="getUsers()" class="btn-success">Usuarios</button>
+			
+			<ul>
+				<li v-for="user in users">{{ user.name }} 
+					<button @click.stop.prevent="" class="btn-success">+</button></li>
+			</ul>
+		</div>
+	</div>
+
+	<script src="http://unpkg.com/vue"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.4"></script>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+	<script>
+		var mixin = {
+			methods: {
+				getUsers(){
+					var url = 'http://jsonplaceholder.typicode.com/users';
+					var vm = this;
+					axios.get(url).then(function(r) {
+						vm.users = r.data;
+						vm.loaders.users = false;
+						console.log(r);
+					});				
+				}
+			}
+		}
+		
+		var app = new Vue({
+			el: "#app",
+
+			mixins: [mixin],
+
+			data: {
+				titulo: "Lista!",
+				users: [],
+			}
+		});
+	</script>
+</body>
+</html>
