@@ -7,49 +7,77 @@
 	<title>Lista de Usuarios!</title>
 </head>
 <body>
-	<div id="app">
-		<br><br><br>
+	
+				
+	<div class="container" id="app">
 		
-		<div class="container">
+		<lista-usuarios></lista-usuarios>
+
+		<lista-usuarios></lista-usuarios>
+
+		<lista-usuarios></lista-usuarios>
+
+		<lista-usuarios></lista-usuarios>
+
+		<lista-usuarios></lista-usuarios>
+
+		<lista-usuarios></lista-usuarios>
+
+		<lista-usuarios></lista-usuarios>
+
+	</div>
+	
+
+	<template id="listaDeUsuarios">
+		<div>
 			<h1>{{ titulo }}</h1>
 			<button @click.stop.prevent="getUsers()" class="btn-success">Usuarios</button>
 			
 			<ul>
-				<li v-for="user in users">{{ user.name }} 
-					<button @click.stop.prevent="" class="btn-success">+</button></li>
+				<li v-for="user in users">
+					{{ user.name }} 
+				</li>
 			</ul>
+		</div>br>
 		</div>
-	</div>
+	</template>
+
 
 	<script src="http://unpkg.com/vue"></script>
-	<script src="https://cdn.jsdelivr.net/npm/vue-resource@1.3.4"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 	<script>
-		var mixin = {
-			methods: {
-				getUsers(){
-					var url = 'http://jsonplaceholder.typicode.com/users';
-					var vm = this;
-					axios.get(url).then(function(r) {
-						vm.users = r.data;
-						vm.loaders.users = false;
-						console.log(r);
-					});				
-				}
-			}
-		}
-		
+
+		Vue.component('lista-usuarios',{
+			template:"#listaDeUsuarios"
+		});
+
+
+
+
 		var app = new Vue({
 			el: "#app",
-
-			mixins: [mixin],
 
 			data: {
 				titulo: "Lista!",
 				users: [],
+			},
+
+			created(){
+
+			axios.get("https://jsonplaceholder.typicode.com/users").then( resposta => {
+
+				this.users = resposta.data
 			}
+
+				)
+		}
+
+
 		});
 	</script>
 </body>
 </html>
+
+
+<!--  -->
