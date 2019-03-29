@@ -1,0 +1,7 @@
+ADICIONAR E ATUALIZAR NO GIT
+git add . 
+git commit -m ""
+git push
+
+CHEGAR E ATUALIZAR COM A BASE E TRABALHAR
+git pull
