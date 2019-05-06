@@ -1,76 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Lista de Usuarios!</title>
-</head>
-<body>
-	
-				
-	<div class="container" id="app">
-		
-		<lista-usuarios></lista-usuarios>
-
-		<lista-usuarios></lista-usuarios>
-
-		<lista-usuarios></lista-usuarios>
-
-		<lista-usuarios></lista-usuarios>
-
-		<lista-usuarios></lista-usuarios>
-
-		<lista-usuarios></lista-usuarios>
-
-		<lista-usuarios></lista-usuarios>
-
-	</div>
-	
-
-	<template id="listaDeUsuarios">
-		<div>
-			<h1>{{ titulo }}</h1>
-			<button @click.stop.prevent="getUsers()" class="btn-success">Usuarios</button>
-			
-			<ul>
-				<li v-for="user in users">
-					{{ user.name }} 
-				</li>
-			</ul>
-		</div><br>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>VueJS Tutorials</title>
+		<link href="styles.css" rel="stylesheet"/>
+		<script src="http://unpkg.com/vue"></script>
+	</head>
+	<body>
+		<div id="vue-app">
+			<h1>{{ greet('night') }}</h1>
+			<p>Name: {{ name }}</p>
+			<p>Job: {{job}} </p>
 		</div>
-	</template>
-
-
-	<script src="http://unpkg.com/vue"></script>
-	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-	<script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
-	<script>
-
-		Vue.component('lista-usuarios',{
-			template:"#listaDeUsuarios"
-		});
-
-
-		var app = new Vue({
-			el: "#app",
-
-			data: {
-				titulo: "Lista!",
-				users: [],
-			},
-
-			created(){
-
-			axios.get("https://jsonplaceholder.typicode.com/users").then( resposta => {
-
-				this.users = resposta.data
-			}
-
-				)
-		}
-		});
-	</script>
-</body>
+	
+ 		<script src="app.js"></script>
+	</body>
 </html>
